@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <TextView
+            android:text="@string/list_start_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/startTitle"
+            android:textSize="@dimen/list_description_size" />
+
+        <TextView
+            android:text="@string/date_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/startValue"
+            android:textSize="@dimen/list_value_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <TextView
+            android:text="@string/list_end_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/endTitle"
+            android:textSize="@dimen/list_description_size" />
+
+        <TextView
+            android:text="@string/date_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/endValue"
+            android:textSize="@dimen/list_value_size" />
+
+    </LinearLayout>
+
+</LinearLayout>
