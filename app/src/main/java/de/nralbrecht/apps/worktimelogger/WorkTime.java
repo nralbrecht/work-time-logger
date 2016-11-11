@@ -34,6 +34,10 @@ class WorkTime {
         end = value;
     }
 
+    boolean hasEnd() {
+        return end != null;
+    }
+
     @Override
     public String toString() {
         return "{ " + getStart() + ", " + getEnd() + "}";

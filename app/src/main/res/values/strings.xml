@@ -5,4 +5,6 @@
     <string name="date_placeholder">-</string>
     <string name="list_start_description">Start:</string>
     <string name="list_end_description">End:</string>
+    <string name="cancel_button_text">Cancel</string>
+    <string name="ok_button_text">Ok</string>
 </resources>

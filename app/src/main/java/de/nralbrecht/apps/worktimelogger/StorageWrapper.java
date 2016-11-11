@@ -59,8 +59,9 @@ class StorageWrapper {
         data.clear();
     }
 
-    void removeLine(String line) {
-        data.remove(line);
+    void updateLine(int index, String newLine) {
+        data.set(index, newLine);
+        Save();
     }
 
     ArrayList<String> getAllLines() {

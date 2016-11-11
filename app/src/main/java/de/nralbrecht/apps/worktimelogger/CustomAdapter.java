@@ -21,13 +21,11 @@ class CustomAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        if(data.size() <= 0)
-            return 1;
         return data.size();
     }
 
     public Object getItem(int position) {
-        return position;
+        return data.get(position);
     }
 
     public long getItemId(int position) {

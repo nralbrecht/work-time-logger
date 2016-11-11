@@ -1,11 +1,14 @@
 package de.nralbrecht.apps.worktimelogger;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -34,6 +37,23 @@ public class MainActivity extends AppCompatActivity {
         entryList.setAdapter(arrayAdapter);
         updateListView();
 
+        entryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                WorkTime item = (WorkTime) arrayAdapter.getItem(position);
+
+                Intent intent = new Intent(MainActivity.this, ListDetailActivity.class);
+                intent.putExtra("index", position);
+                intent.putExtra("startDate", item.getStart());
+
+                if (item.hasEnd()) {
+                    intent.putExtra("endDate", item.getEnd());
+                }
+
+                startActivityForResult(intent, 0);
+            }
+        });
+
         final Button button = (Button) findViewById(R.id.btnAdd);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -44,10 +64,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == 1) {
+            int index = data.getIntExtra("index", -1);
+
+            if (index != -1) {
+                int i1 = (arrayAdapter.getCount() - index - 1) * 2;
+
+                storageWrapper.updateLine(i1, data.getStringExtra("startDate"));
+
+                if (data.hasExtra("endDate")) {
+                    storageWrapper.updateLine(i1 + 1, data.getStringExtra("endDate"));
+                }
+
+                updateListView();
+            }
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
-        return true;
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
